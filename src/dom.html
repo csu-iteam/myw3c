@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom</title>
+    <script lang="javascript">
+        function getBody() {
+            var td = document.getElementById("getBodyResult");
+            //td.innerText = document.body.innerHTML;
+            //td.innerHTML = document.body.innerHTML;
+            td.innerText = document.body.innerText;
+        }
+        function writeCookie() {
+            var txtName = document.getElementById("txtCookieName");
+            var txtValue = document.getElementById("txtCookieValue");
+            document.cookie = txtName.value + "=" + txtValue.value;
+
+        }
+        function getCookie() {
+            var td = document.getElementById("getCookieResult");
+            td.innerHTML = "";
+            var cookie = document.cookie;
+            var arrCookies = cookie.split(';');
+            for (var i = 0; i < arrCookies.length; i++) {
+                var keyValuePair = arrCookies[i].split("=");
+                td.innerHTML += keyValuePair[0] + ":" + keyValuePair[1] + "<br>";
+            }
+
+        }
+        function clearCookie() {
+            document.cookie="";
+            var cookie = document.cookie;
+            var arrCookies = cookie.split(';');
+            for (var i = 0; i < arrCookies.length; i++) {
+                var keyValuePair = arrCookies[i].split("=");
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = keyValuePair[0] + "=;expires=" + date.toGMTString();
+            }
+            var td = document.getElementById("getCookieResult");
+            td.innerHTML += "removed " + arrCookies.length + "cookies";
+        }
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <th>property</th>
+        <th>demo</th>
+        <th>result</th>
+    </tr>
+    <tr>
+        <td>
+            body
+        </td>
+        <td>
+            <button onclick="getBody();">Get Body</button>
+        </td>
+        <td id="getBodyResult"></td>
+    </tr>
+    <tr>
+        <td>
+            cookie
+        </td>
+        <td>
+            <label for="txtCookieName">Cookie Name</label>
+            <input id="txtCookieName"/><br>
+            <label for="txtCookieValue">Cookie Value</label>
+            <input id="txtCookieValue"/><br>
+            <button onclick="writeCookie();">Write Cookie</button>
+            <button onclick="getCookie();">Get Cookie</button>
+            <button onclick="clearCookie();">Clear Cookie</button>
+        </td>
+        <td id="getCookieResult"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>method</th>
+        <th>demo</th>
+        <th>result</th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>event</th>
+        <th>demo</th>
+        <th>result</th>
+    </tr>
+</table>
+</body>
+</html>
